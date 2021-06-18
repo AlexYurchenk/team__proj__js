@@ -13,18 +13,20 @@ SearchApiTrend.fetchtrend().then(results => {
 function renderMovies(results) {
     // console.log(results);
     fetchGenres()
-    .then( a => {
-        let temp = {};
-        for(let e of a){
-            temp[e.id] = e.name;
+    .then( genres => {
+        let template = {};
+        for(let genre of genres){
+            template[genre.id] = genre.name;
         }
-        for(let i = 0; i < results.length; i++){
-            results[i].genre_ids = results[i].genre_ids.map( gen => temp[gen])
-        }
+        results.forEach(result => {
+            result.genre_ids = result.genre_ids.map( genre => template[genre])
+        });
+
 
         const markUp = trendMovieTpl(results);
         refs.trendContainer.insertAdjacentHTML('beforeend',markUp);
     })
+
 }
 
 function fetchGenres() {
