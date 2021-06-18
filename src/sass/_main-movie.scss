@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.1;
+    color: #2a2a2a;
+  
+  }
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+
+.js-trend-list {
+    display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-width: calc(100vw - 80px);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.film-title {
+  margin-top:10px;
+  font-size: 15px;
+}
+
+// .js-trend-container li {
+//   height: 450px;
+//   overflow: hidden;
+// }
+
+.js-trend-container img {
+  display: block;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.about-movie {
+  display: flex;
+}
+
+.genre {
+  margin-right: 10px;
+}
+
+
+  .stats-item {
+      margin-right: 10px;
+  }
+
