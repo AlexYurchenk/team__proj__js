@@ -1,0 +1,36 @@
+.footer{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+    max-width: 320px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.footer__container{
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.footer__text{
+    display: inline;
+    color: #545454;
+    font-size: 14px;
+    line-height: 1.17em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.footer__text--secondary{
+    margin: 0%;
+}
+.footer__icon{
+    position: relative;
+    bottom: -2px;
+    width: 14px;
+    height: 13px;
+}
+.footer__link{
+    color: #545454;
+    font-size: 14px;
+    line-height: 1.17em;
+    border-bottom: solid 1px #545454;
+}

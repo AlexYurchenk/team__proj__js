@@ -1,0 +1,40 @@
+.list__item{
+    margin-bottom: 20px; 
+}
+.list__item:last-child{
+    margin: 0%;
+}
+.item__img{
+    width: 280px;
+    height: 398px;
+    border-radius: 5px;
+    display: block;
+}
+.item__wrapper{
+    text-align: left;
+    margin-top: 10px;
+}
+.item__title{
+    display: block;
+    margin: 0%;
+    text-transform: uppercase;
+    color: #000000;
+    margin-bottom: 10px;
+}
+.irem__text{
+    display: inline;
+    line-height: 1.15em;
+    color: #FF6B08;
+    margin: 0%;
+}
+.item__rating{
+    width: 36px;
+    height: 16px;
+    background-color: #FF6B08;
+    border-radius: 5px;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-left: 12px;
+    }
