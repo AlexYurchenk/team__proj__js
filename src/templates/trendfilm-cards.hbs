@@ -1,6 +1,6 @@
 
 {{#each this}}
-<li>
+<li class="movie-items">
  
   <img 
   class="movie-picture"
@@ -9,9 +9,9 @@
 
   <div class="description">
       <h2 class="film-title">{{title}}</h2>
-   <div>
+   <div class="about-movie">
          <p class="genre">{{genre_ids}}</p>
-         <p class="release-date">{{release_date}}</p>
+         <p class="release-date"> | {{release_date}}</p>
    </div>
   </div>
 </li>
