@@ -16,6 +16,7 @@ function fetchtrend() {
   
 })
 .then(({ results }) => {
+    console.log(results)
     return results;
 })
 }
