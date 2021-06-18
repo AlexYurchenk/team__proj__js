@@ -1,3 +1,18 @@
+
+@import './util/normalize';
+@import './util/font-family';
+@import './util/nullstyle';
+@import './util/variable';
+@import './base/base';
+@import './components/header';
+@import './components/logo';
+@import './components/input';
+@import './components/main-nav';
+@import './components/library-buttons';
+@import './components/main-card';
+@import './components/main';
+@import './components/footer';
+
 /*
  * Главный файл стилей.
  * Все паршалы подключаются сюда.
@@ -5,3 +20,4 @@
 
 // Стили для файла с примером HTML-фрагмента
 @import './main-movie';
+
