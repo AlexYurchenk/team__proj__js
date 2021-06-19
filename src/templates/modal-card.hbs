@@ -1,0 +1,46 @@
+<article class="modal-movie-wrapper" id="{{id}}">
+    <div class="card-poster-wrapper">
+        {{#if poster_path}}
+        <img src='https://image.tmdb.org/t/p/w500/{{poster_path}}' class="modal-movie-poster" />
+        {{else}}
+        <img src=""
+            class="modal-movie-poster" />
+        {{/if}}
+    </div>
+    <div class="modal-movie-information">
+        <h2 class="modal-movie-title">{{title}}</h2>
+        <ul class="modal-movie-data">
+            <li class="modal-movie-item">
+                <p class="modal-movie-data-name">Vote / Votes</p>
+                <p class="modal-movie-description">
+                    <span class="modal-movie-description-vote">{{vote_average}}</span>
+                    <span class="modal-movie-data-slash">/</span>
+                    <span class="modal-movie-description-votes">{{vote_count}}</span>
+                </p>
+            </li>
+            <li class="modal-movie-item">
+                <p class="modal-movie-data-name">Popularity</p>
+                <p class="modal-movie-description">{{popularity}}</p>
+            </li>
+            <li class="modal-movie-item">
+                <p class="modal-movie-data-name">Original Title</p>
+                <p class="modal-movie-description-title">{{original_title}}</p>
+            </li>
+            <li class="modal-movie-item">
+                <p class="modal-movie-data-name">Genre</p>
+                <p class="modal-movie-description">
+                    {{#each genres}}
+                    <span class="modal-movie-genre-name">{{name}} </span>
+                    {{/each}}
+                </p>
+            </li>
+        </ul>
+        <p class="modal-movie-about">About</p>
+        <p class="modal-movie-descript">{{overview}}</p>
+        <div class="modal-movie-button-wrapper">
+            <button data-name="watched" class="modal-movie-button modal-left-button" type="button">add to
+                watched</button>
+            <button data-name="queue" class="modal-movie-button" type="button">add to queue</button>
+        </div>
+    </div>
+</article>
