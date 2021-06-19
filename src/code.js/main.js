@@ -12,6 +12,9 @@ const refs = {
     lightbox: document.querySelector('.modal-movie-lightbox'),
     closeModalBtn: document.querySelector('[data-action="close-lightbox"]'),
     overlayModal: document.querySelector('.modal-movie-overlay'),
+    next:document.querySelector('.js-btn-next'),
+    pr: document.querySelector('.js-btn-pr'),
+    btnList : document.querySelector('.button-list__container')
 
 }
 
@@ -75,27 +78,73 @@ function onBtnClose(){
     refs.overlayModal.removeChild(refs.overlayModal.firstChild)
   }
 
-/////////////////////////
-// const API__KEY = '44d74a10460e9a32f8546bed31d47780';
-// const BASE__URL = 'https://api.themoviedb.org/3/discover/';
-// export default class NewApiService{
-//     constructor(){
-//         this.page = 1;
-//     }
-//     fetchFilms (){
-//         const url = `${BASE__URL}movie?api_key=${API__KEY}&language=ua-UA&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
-//         return fetch(url)
-//             .then(r =>{
-//                 return r.json()})
-//                 .then(film =>{
-//                     console.log(film)
-//                     this.incrementPage();
-//                     return film
-//                 })
 
-//     }
-//     incrementPage(){
-//         this.page +=1;
-//     }
+///////////////////////
+const API__KEY = '44d74a10460e9a32f8546bed31d47780';
+const BASE__URL = 'https://api.themoviedb.org/3/discover/';
+let n = 1;
+refs.next.addEventListener('click',e => {
+    console.log(e.target)
+    n += 1;
+     if(n > 500){
+         n--
+         return
+     }
+     btnCreate()
+    return feachMuvie()
 
-// }
+})
+refs.pr.addEventListener('click', e =>{
+    n-=1;
+    if(n === 0){
+        n++
+        return
+    }
+    btnCreate()
+    return feachMuvie()
+
+})
+refs.btnList.addEventListener('click', e => {
+
+    
+    if(e.target.nodeName!== 'BUTTON'){
+        return
+    }
+    
+    console.log(e.target.nodeName,e.currentTarget)
+    
+    n = e.target.textContent -0;
+    btnCreate()
+    feachMuvie()
+
+})
+
+function kekw(kuda, n){
+	refs.btnList.insertAdjacentHTML(kuda,`<li class="button-list__item"><button>${n}</button></li>`)
+}
+function btnCreate(){
+    refs.btnList.innerHTML = '';
+    refs.btnList.insertAdjacentHTML('afterbegin',`<li class="button-list__item button-list__item--curretn"><button>${n}</button></li>`)
+    for(let i = 1; i < 3; i++){
+    if(n+i < 501)
+      kekw('beforeend', n+i);
+     if(n-i > 0)
+            kekw('afterbegin', n-i);
+    }
+
+}
+
+function feachMuvie(){
+    fetch(`${BASE__URL}movie?api_key=${API__KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${n}&with_watch_monetization_types=flatrate`)
+    .then(r => r.json())
+    .then( films => {
+        console.log(films)
+        return films
+    })
+    .then( ({results}) =>{
+
+        const markUp = trendMovieTpl(results);
+        refs.trendContainer.innerHTML = ''
+        refs.trendContainer.insertAdjacentHTML('beforeend',markUp);
+    })
+} 
