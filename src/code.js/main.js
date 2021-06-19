@@ -79,7 +79,7 @@ function onBtnClose(){
   }
 
 
-///////////////////////
+///////////////////////начало пагинации 
 const API__KEY = '44d74a10460e9a32f8546bed31d47780';
 const BASE__URL = 'https://api.themoviedb.org/3/discover/';
 let n = 1;
@@ -148,3 +148,5 @@ function feachMuvie(){
         refs.trendContainer.insertAdjacentHTML('beforeend',markUp);
     })
 } 
+
+//конеуц пагинации
