@@ -3,16 +3,26 @@
         <svg class="header__icon">
             <use href="./img/sprite.svg#film"></use>
         </svg>
-        <span class="header__logo">Filmoteka</span>
+        <span class="header__logo logo-js">Filmoteka</span>
         <nav class="header__nav">
             <ul class="nav__list">
-                <li class="nav__item nav__item--current">Home</li>
-                <li class="nav__item">my library</li>
+                <li class="nav__item nav__item--current home-js"><a href="#">Home</a></li>
+                <li class="nav__item js-nav__item"><a href="#">my library</a></li>
             </ul>
         </nav> 
-        <input class="header__input" type="text" placeholder="Поиск фильмов">
+        <input class="header__input js-header__input" type="text" placeholder="Поиск фильмов">
         <svg class="input__icon">
             <use href="./img/sprite.svg#search"></use>
         </svg>
+        <nav class="nav-button">
+            <ul class="btn-list">
+                <li>
+                    <button type="button">Watched</button>
+                </li>
+                <li>
+                    <button type="button">Queue</button>
+                </li>
+            </ul>
+        </nav>
     </div>
 </header>

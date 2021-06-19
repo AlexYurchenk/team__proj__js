@@ -4,6 +4,7 @@ import trendMovieTpl from '../templates/trendfilm-cards.hbs';
 
 const refs = {
     trendContainer: document.querySelector('.js-trend-list'),
+    button:document.querySelector('.btn-list'),
 }
 
 SearchApiTrend.fetchtrend().then(results => {
@@ -23,6 +24,7 @@ function renderMovies(results) {
 
         const markUp = trendMovieTpl(results);
         refs.trendContainer.insertAdjacentHTML('beforeend',markUp);
+        refs.button.classList.add('none');
     })
 
 }
