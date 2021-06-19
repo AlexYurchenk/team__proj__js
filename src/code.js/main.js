@@ -5,10 +5,14 @@ import articleTpl from '../templates/modal-card.hbs'
 
 const refs = {
     trendContainer: document.querySelector('.js-trend-list'),
+
+    button:document.querySelector('.btn-list'),
+
     modal: document.querySelector('.modal'),
     lightbox: document.querySelector('.modal-movie-lightbox'),
     closeModalBtn: document.querySelector('[data-action="close-lightbox"]'),
     overlayModal: document.querySelector('.modal-movie-overlay'),
+
 }
 
 SearchApiTrend.fetchtrend().then(results => {
@@ -28,6 +32,7 @@ function renderMovies(results) {
 
         const markUp = trendMovieTpl(results);
         refs.trendContainer.insertAdjacentHTML('beforeend',markUp);
+        refs.button.classList.add('none');
     })
 
 }
