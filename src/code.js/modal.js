@@ -1,7 +1,7 @@
-// import * as basicLightbox from 'basiclightbox';
-// import 'basiclightbox/dist/basicLightbox.min.css';
+// // import * as basicLightbox from 'basiclightbox';
+// // import 'basiclightbox/dist/basicLightbox.min.css';
 
-// import cardMovieTemplate from '../templates/modal-card.hbs';
+// // import cardMovieTemplate from '../templates/modal-card.hbs';
 
 // const modalRefs = {
 //     lightbox: document.querySelector('.modal-movie-lightbox'),
@@ -14,71 +14,71 @@
 //     modal: document.querySelector('.modal'),
 //   };
 
-//   refs.filmContainer.addEventListener('click', showMovieCard);
+// //   refs.filmContainer.addEventListener('click', showMovieCard);
 
 
-//   async function showMovieCard(event) {
+// //   async function showMovieCard(event) {
   
-//     if (event.target.tagName !== 'IMG') {
-//       return
-//     }
+// //     if (event.target.tagName !== 'IMG') {
+// //       return
+// //     }
   
-//     openCloseModal();
+// //     openCloseModal();
   
-//     modalRefs.overlayModal.insertAdjacentHTML(
-//       'beforeend',
-//       cardMovieTemplate(
-//         await fetchMovie(event.target.closest('.movie-items').getAttribute('id')),
-//       ),
-//     );
+// //     modalRefs.overlayModal.insertAdjacentHTML(
+// //       'beforeend',
+// //       cardMovieTemplate(
+// //         await fetchMovie(event.target.closest('.movie-items').getAttribute('id')),
+// //       ),
+// //     );
 
-//    }
+// //    }
 
-//    async function fetchMovie(id) {
-//     const response = await fetch(
+// //    async function fetchMovie(id) {
+// //     const response = await fetch(
   
-//       `https://api.themoviedb.org/3/movie/${id}?api_key=44d74a10460e9a32f8546bed31d47780`,
-//     );
-//     return await response.json();
-//   }
+// //       `https://api.themoviedb.org/3/movie/${id}?api_key=44d74a10460e9a32f8546bed31d47780`,
+// //     );
+// //     return await response.json();
+// //   }
 
-//   async function openCloseModal() {
+// //   async function openCloseModal() {
   
 
-//     modalRefs.lightbox.classList.toggle('modal-is-open');
+// //     modalRefs.lightbox.classList.toggle('modal-is-open');
   
-//     if (modalRefs.lightbox.classList.contains('modal-is-open')) {
-//       window.addEventListener('keydown', pressEsc);
-//       modalRefs.closeModalBtn.addEventListener('click', openCloseModal);
-//       modalRefs.overlayModal.addEventListener('click', onOverlayClick);
-//     } else {
-//       window.removeEventListener('keydown', pressEsc);
-//       modalRefs.closeModalBtn.removeEventListener('click', openCloseModal);
-//       modalRefs.overlayModal.removeEventListener('click', onOverlayClick);
-//        removeOldElement(document.querySelector('.modal-movie-wrapper'));
+// //     if (modalRefs.lightbox.classList.contains('modal-is-open')) {
+// //       window.addEventListener('keydown', pressEsc);
+// //       modalRefs.closeModalBtn.addEventListener('click', openCloseModal);
+// //       modalRefs.overlayModal.addEventListener('click', onOverlayClick);
+// //     } else {
+// //       window.removeEventListener('keydown', pressEsc);
+// //       modalRefs.closeModalBtn.removeEventListener('click', openCloseModal);
+// //       modalRefs.overlayModal.removeEventListener('click', onOverlayClick);
+// //        removeOldElement(document.querySelector('.modal-movie-wrapper'));
   
-//     }
-//   }
+// //     }
+// //   }
 
-//   function pressEsc(evt) {
-//     if (
-//       modalRefs.lightbox.classList.contains('modal-is-open') &&
-//       evt.code === 'Escape'
-//     ) {
-//       openCloseModal();
-//     }
-//   }
+// //   function pressEsc(evt) {
+// //     if (
+// //       modalRefs.lightbox.classList.contains('modal-is-open') &&
+// //       evt.code === 'Escape'
+// //     ) {
+// //       openCloseModal();
+// //     }
+// //   }
   
-//   function onOverlayClick(evt) {
-//     if (evt.target.closest('.modal-movie-wrapper')) {
-//       return;
-//     }
+// //   function onOverlayClick(evt) {
+// //     if (evt.target.closest('.modal-movie-wrapper')) {
+// //       return;
+// //     }
   
-//     openCloseModal();
-// }
+// //     openCloseModal();
+// // }
 
-// function removeOldElement(element) {
-//     if (element) {
-//       element.remove();
-//     }
-//   }
+// // function removeOldElement(element) {
+// //     if (element) {
+// //       element.remove();
+// //     }
+// //   }

@@ -5,6 +5,10 @@ import articleTpl from '../templates/modal-card.hbs'
 
 const refs = {
     trendContainer: document.querySelector('.js-trend-list'),
+    modal: document.querySelector('.modal'),
+    lightbox: document.querySelector('.modal-movie-lightbox'),
+    closeModalBtn: document.querySelector('[data-action="close-lightbox"]'),
+    overlayModal: document.querySelector('.modal-movie-overlay'),
 }
 
 SearchApiTrend.fetchtrend().then(results => {
@@ -53,9 +57,19 @@ refs.trendContainer.addEventListener('click',e => {
     })
     .then(film => {
         const markUp = articleTpl(film);
-        refs.trendContainer.insertAdjacentHTML('beforeend',markUp);
+
+        refs.lightbox.classList.toggle('modal-is-open')
+        refs.overlayModal.insertAdjacentHTML('beforeend',markUp)
+        
     })
 })
+refs.closeModalBtn.addEventListener('click',onBtnClose)
+function onBtnClose(){
+
+    refs.lightbox.classList.remove('modal-is-open')
+    refs.overlayModal.removeChild(refs.overlayModal.firstChild)
+  }
+
 /////////////////////////
 // const API__KEY = '44d74a10460e9a32f8546bed31d47780';
 // const BASE__URL = 'https://api.themoviedb.org/3/discover/';
