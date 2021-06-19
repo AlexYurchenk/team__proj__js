@@ -1,6 +1,7 @@
 import SearchApiTrend from "./apiTrendService.js";
 
 import trendMovieTpl from '../templates/trendfilm-cards.hbs';
+import articleTpl from '../templates/modal-card.hbs'
 
 const refs = {
     trendContainer: document.querySelector('.js-trend-list'),
@@ -49,6 +50,10 @@ refs.trendContainer.addEventListener('click',e => {
         console.log(film)
         console.log(film.id)
         return film
+    })
+    .then(film => {
+        const markUp = articleTpl(film);
+        refs.trendContainer.insertAdjacentHTML('beforeend',markUp);
     })
 })
 /////////////////////////
