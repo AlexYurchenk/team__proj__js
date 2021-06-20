@@ -14,7 +14,8 @@ const refs = {
     overlayModal: document.querySelector('.modal-movie-overlay'),
     next:document.querySelector('.js-btn-next'),
     pr: document.querySelector('.js-btn-pr'),
-    btnList : document.querySelector('.button-list__container')
+    btnList : document.querySelector('.button-list__container'),
+    btnListPage: document.querySelector('.button-list__page'),
 
 }
 
@@ -94,6 +95,11 @@ refs.next.addEventListener('click',e => {
     return feachMuvie()
 
 })
+
+if(n === 1){
+ refs.btnListPage.classList.add('button-list__page--current');
+}
+
 refs.pr.addEventListener('click', e =>{
     n-=1;
     if(n === 0){
@@ -120,11 +126,11 @@ refs.btnList.addEventListener('click', e => {
 })
 
 function kekw(kuda, n){
-	refs.btnList.insertAdjacentHTML(kuda,`<li class="button-list__item"><button>${n}</button></li>`)
+	refs.btnList.insertAdjacentHTML(kuda,`<li class="button-list__item"><button class="button-list__page">${n}</button></li>`)
 }
 function btnCreate(){
     refs.btnList.innerHTML = '';
-    refs.btnList.insertAdjacentHTML('afterbegin',`<li class="button-list__item button-list__item--curretn"><button>${n}</button></li>`)
+    refs.btnList.insertAdjacentHTML('afterbegin',`<li class="button-list__item button-list__item--curretn"><button class="button-list__page button-list__page--current">${n}</button></li>`)
     for(let i = 1; i < 3; i++){
     if(n+i < 501)
       kekw('beforeend', n+i);
@@ -149,4 +155,4 @@ function feachMuvie(){
     })
 } 
 
-//конеуц пагинации
+//конец пагинации
