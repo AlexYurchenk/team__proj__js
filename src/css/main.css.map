@@ -6,7 +6,7 @@
         "../sass/util/_normalize.scss",
         "../sass/util/_font-family.scss",
         "../sass/util/_nullstyle.scss",
-        "../sass/util/_variable.scss",
+        "../sass/util/_variables.scss",
         "../sass/base/_base.scss",
         "../sass/components/_header.scss",
         "../sass/components/_logo.scss",
