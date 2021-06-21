@@ -15,6 +15,8 @@ const refs = {
 
 }
 
+export default refs;
+
 SearchApiTrend.fetchtrend().then(results => {
     renderMovies(results)
 });
@@ -48,10 +50,17 @@ function fetchGenres() {
         return temp;
     })
 }
+
+
+
+
 refs.trendContainer.addEventListener('click',e => {
     if(e.target.nodeName !=='IMG'){
         return
       }
+
+    openCloseModal();
+      
     const a = e.target.id
     return fetch(`https://api.themoviedb.org/3/movie/${a}?api_key=44d74a10460e9a32f8546bed31d47780&language=en-US`)
     .then(r => r.json())
@@ -63,17 +72,62 @@ refs.trendContainer.addEventListener('click',e => {
     .then(film => {
         const markUp = articleTpl(film);
 
-        refs.lightbox.classList.toggle('modal-is-open')
-        refs.overlayModal.insertAdjacentHTML('beforeend',markUp)
-        
+        // refs.lightbox.classList.toggle('modal-is-open')
+        refs.overlayModal.insertAdjacentHTML('beforeend',markUp)  
     })
 })
-refs.closeModalBtn.addEventListener('click',onBtnClose)
-function onBtnClose(){
 
-    refs.lightbox.classList.remove('modal-is-open')
-    refs.overlayModal.removeChild(refs.overlayModal.firstChild)
+
+// refs.closeModalBtn.addEventListener('click',onBtnClose)
+
+// function onBtnClose(){
+//     // refs.lightbox.classList.remove('modal-is-open')
+//     refs.overlayModal.removeChild(refs.overlayModal.firstChild)
+//   }
+
+
+//   /////////////////////////
+
+
+function pressEsc(e) {
+    if (
+      refs.lightbox.classList.contains('modal-is-open') &&
+      e.code === 'Escape'
+    ) {
+      openCloseModal();
+    }
   }
+
+    function openCloseModal() {
+  
+    refs.lightbox.classList.toggle('modal-is-open');
+  
+    if (refs.lightbox.classList.contains('modal-is-open')) {
+      window.addEventListener('keydown', pressEsc);
+      refs.closeModalBtn.addEventListener('click', openCloseModal);
+      refs.overlayModal.addEventListener('click', onOverlayClick);
+    } else {
+      window.removeEventListener('keydown', pressEsc);
+      refs.closeModalBtn.removeEventListener('click', openCloseModal);
+      refs.overlayModal.removeEventListener('click', onOverlayClick);
+       removeOldElement(document.querySelector('.modal-movie-wrapper'));
+  
+    }
+  }
+
+    function onOverlayClick(e) {
+    if (e.target.closest('.modal-movie-wrapper')) {
+      return;
+    }
+        openCloseModal();
+}
+
+function removeOldElement(element) {
+    if (element) {
+      element.remove();
+    }
+  }
+
 
 /////////////////////////
 // const API__KEY = '44d74a10460e9a32f8546bed31d47780';

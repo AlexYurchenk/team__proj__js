@@ -3,11 +3,6 @@
 
 // // import cardMovieTemplate from '../templates/modal-card.hbs';
 
-// const modalRefs = {
-//     lightbox: document.querySelector('.modal-movie-lightbox'),
-//     closeModalBtn: document.querySelector('[data-action="close-lightbox"]'),
-//     overlayModal: document.querySelector('.modal-movie-overlay'),
-//   };
 
 //   const refs = {
 //     filmContainer: document.querySelector('.js-trend-list'),
@@ -17,32 +12,7 @@
 // //   refs.filmContainer.addEventListener('click', showMovieCard);
 
 
-// //   async function showMovieCard(event) {
-  
-// //     if (event.target.tagName !== 'IMG') {
-// //       return
-// //     }
-  
-// //     openCloseModal();
-  
-// //     modalRefs.overlayModal.insertAdjacentHTML(
-// //       'beforeend',
-// //       cardMovieTemplate(
-// //         await fetchMovie(event.target.closest('.movie-items').getAttribute('id')),
-// //       ),
-// //     );
-
-// //    }
-
-// //    async function fetchMovie(id) {
-// //     const response = await fetch(
-  
-// //       `https://api.themoviedb.org/3/movie/${id}?api_key=44d74a10460e9a32f8546bed31d47780`,
-// //     );
-// //     return await response.json();
-// //   }
-
-// //   async function openCloseModal() {
+// //    function openCloseModal() {
   
 
 // //     modalRefs.lightbox.classList.toggle('modal-is-open');
@@ -82,3 +52,4 @@
 // //       element.remove();
 // //     }
 // //   }
+
