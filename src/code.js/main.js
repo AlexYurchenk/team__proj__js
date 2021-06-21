@@ -11,11 +11,15 @@ const refs = {
     modal: document.querySelector('.modal'),
     lightbox: document.querySelector('.modal-movie-lightbox'),
     closeModalBtn: document.querySelector('[data-action="close-lightbox"]'),
+    overlay:document.querySelector('.modal-movie-lightbox'),
     overlayModal: document.querySelector('.js-modal-movie-overlay'),
     next:document.querySelector('.js-btn-next'),
     pr: document.querySelector('.js-btn-pr'),
     btnList : document.querySelector('.button-list__container'),
     btnListPage: document.querySelector('.button-list__page'),
+    wrapperEl: document.querySelector('.modal-movie-wrapper'),
+    poster: document.querySelector('.card-poster-wrapper'),
+    information: document.querySelector('.modal-movie-information')
 
 }
 
@@ -104,7 +108,8 @@ function pressEsc(e) {
 
 
     function openCloseModal() {
-  
+        refs.overlayModal.innerHTML = '';
+
     refs.lightbox.classList.toggle('modal-is-open');
   
     if (refs.lightbox.classList.contains('modal-is-open')) {
@@ -115,8 +120,6 @@ function pressEsc(e) {
       window.removeEventListener('keydown', pressEsc);
       refs.closeModalBtn.removeEventListener('click', openCloseModal);
       refs.overlayModal.removeEventListener('click', onOverlayClick);
-       removeOldElement(document.querySelector('.modal-movie-wrapper'));
-  
     }
   }
 
@@ -126,38 +129,12 @@ function pressEsc(e) {
     }
         openCloseModal();
 }
+refs.overlay.addEventListener('click', evt => {
+   if(evt.currentTarget === evt.target){
+    openCloseModal();
+   }
+})
 
-function removeOldElement(element) {
-    if (element) {
-      element.remove();
-    }
-  }
-
-
-/////////////////////////
-// const API__KEY = '44d74a10460e9a32f8546bed31d47780';
-// const BASE__URL = 'https://api.themoviedb.org/3/discover/';
-// export default class NewApiService{
-//     constructor(){
-//         this.page = 1;
-//     }
-//     fetchFilms (){
-//         const url = `${BASE__URL}movie?api_key=${API__KEY}&language=ua-UA&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`
-//         return fetch(url)
-//             .then(r =>{
-//                 return r.json()})
-//                 .then(film =>{
-//                     console.log(film)
-//                     this.incrementPage();
-//                     return film
-//                 })
-
-//     }
-//     incrementPage(){
-//         this.page +=1;
-//     }
-
-// }
 
 
 ///////////////////////начало пагинации 

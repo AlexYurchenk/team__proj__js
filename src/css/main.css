@@ -207,22 +207,15 @@ img {
   pointer-events: none;
   -webkit-transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow-y: scroll;
 }
 
 .modal-is-open {
   opacity: 1;
   pointer-events: auto;
-}
-
-.modal-movie-overlay {
-  top: 0;
-  left: 0;
-  overflow-y: scroll;
-  width: 100vw;
-  height: 100vh;
-  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-movie-wrapper {
@@ -271,9 +264,10 @@ img {
 }
 
 .modal-movie-close-button {
+  z-index: 50;
   position: absolute;
   top: 8px;
-  right: 4px;
+  right: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -449,10 +443,16 @@ img {
   }
 }
 
-.modal-movie-button-wrapper {
+.js-modal-movie-overlay {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.modal-movie-button-wrapper {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-top: 20px;
 }
 
