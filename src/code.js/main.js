@@ -11,7 +11,7 @@ const refs = {
     modal: document.querySelector('.modal'),
     lightbox: document.querySelector('.modal-movie-lightbox'),
     closeModalBtn: document.querySelector('[data-action="close-lightbox"]'),
-    overlayModal: document.querySelector('.modal-movie-overlay'),
+    overlayModal: document.querySelector('.js-modal-movie-overlay'),
     next:document.querySelector('.js-btn-next'),
     pr: document.querySelector('.js-btn-pr'),
     btnList : document.querySelector('.button-list__container'),
@@ -77,7 +77,7 @@ refs.trendContainer.addEventListener('click',e => {
         const markUp = articleTpl(film);
 
         // refs.lightbox.classList.toggle('modal-is-open')
-        refs.overlayModal.insertAdjacentHTML('beforeend',markUp)  
+        refs.overlayModal.insertAdjacentHTML('afterbegin',markUp)  
     })
 })
 

@@ -1,5 +1,6 @@
-<article class="modal-movie-wrapper" id="{{id}}">
-    <div class="card-poster-wrapper">
+<div>
+
+    <div class="card-poster-wrapper" id="{{id}}">
         {{#if poster_path}}
         <img src='https://image.tmdb.org/t/p/w500/{{poster_path}}' class="modal-movie-poster" />
         {{else}}
@@ -43,9 +44,4 @@
             <button data-name="queue" class="modal-movie-button" type="button">add to queue</button>
         </div>
     </div>
-    {{!-- <button
-      type="button"
-      class="modal-movie-close-button"
-      data-action="close-lightbox"
-    ></button> --}}
-</article>
+</div>
