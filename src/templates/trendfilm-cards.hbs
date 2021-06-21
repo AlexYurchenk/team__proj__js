@@ -1,5 +1,15 @@
-
 {{#each this}}
+  <li class='movies__list-item'>
+
+    <img
+      id='{{id}}'
+      class='movie-poster'
+      src='https://image.tmdb.org/t/p/original/{{poster_path}}'
+      alt='{{original_title}}'
+    />
+    {{! poster_sizes "w92" "w154" "w185" "w342" "w500" "w780" "original" }}
+    <div class='movie-card-info'>
+      <p class='movie-title'><b>{{title}}</b></p>
 
 <li class="list__item" id="list_film">
  
@@ -18,5 +28,35 @@
    </div>
   </div>
 </li>
+      <div class='movie-card-details'>
+        <p class='movie-details'> {{genre_ids}} | </p>
+        <p class='movie-details'> {{release_date}} </p>
+        <p class='movie-details-vote'> {{vote_average}} </p>
+      </div>
+    </div>
 
+  </li>
 {{/each}}
+
+{{!-- {{#each this}}
+
+  <li class='list__item'>
+
+    <img
+      id='{{id}}'
+      class='item__img'
+      src='https://image.tmdb.org/t/p/w500/{{poster_path}}'
+      alt='{{title}}'
+    />
+
+    <div class='item__wrapper'>
+      <h2 class='item__title'>{{title}}</h2>
+      <div class='about-movie'>
+        <p class='irem__text'>{{genre_ids}}</p>
+        <p class='irem__text'> | {{release_date}}</p>
+        <p>{{vote_average}}</p>
+      </div>
+    </div>
+  </li>
+
+{{/each}} --}}

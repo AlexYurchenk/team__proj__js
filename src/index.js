@@ -9,5 +9,5 @@ import './code.js/modal';
 
 import './code.js/homeLogoBth.js';
 
-
+import './code.js/search.js';
 
