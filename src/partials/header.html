@@ -1,33 +1,45 @@
 <header class="header overlay">
-    <div class="header__container">
-        <svg class="header__icon logo-js">
-            <use href="./img/sprite.svg#film"></use>
+  <div class="header__container">
+    <svg class="header__icon logo-js">
+      <use href="./img/sprite.svg#film"></use>
+    </svg>
+    <span class="header__logo logo-js">Filmoteka</span>
+    <nav class="header__nav">
+      <ul class="nav__list">
+        <li class="nav__item nav__item--current home-js"><a href="#">Home</a></li>
+        <li class="nav__item js-nav__item"><a href="#">my library</a></li>
+
+        <li class="nav__item nav__item--current home-js">Home</li>
+        <li class="nav__item">my library</li>
+      </ul>
+    </nav>
+    <form class="search-form" id="search-form">
+      <input
+        name="query"
+        class="header__input js-header__input"
+        type="text"
+        placeholder="Поиск фильмов"
+        autocomplete="off"
+      />
+      <button type="submit" class="search-btn">
+        <svg class="input__icon" width="12" height="12">
+          <use href="./img/sprite.svg#search"></use>
         </svg>
-        <span class="header__logo logo-js">Filmoteka</span>
-        <nav class="header__nav">
-            <ul class="nav__list">
+      </button>
+    </form>
+    <p class="notification">
+      Search result not successful. Enter the correct movie name and try again
+    </p>
 
-                <li class="nav__item nav__item--current home-js"><a href="#">Home</a></li>
-                <li class="nav__item js-nav__item"><a href="#">my library</a></li>
-
-                <li class="nav__item nav__item--current home-js">Home</li>
-                <li class="nav__item">my library</li>
-
-            </ul>
-        </nav> 
-        <input class="header__input js-header__input" type="text" placeholder="Поиск фильмов">
-        <svg class="input__icon">
-            <use href="./img/sprite.svg#search"></use>
-        </svg>
-        <nav class="nav-button">
-            <ul class="btn-list">
-                <li>
-                    <button type="button">Watched</button>
-                </li>
-                <li>
-                    <button type="button">Queue</button>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <nav class="nav-button">
+      <ul class="btn-list">
+        <li>
+          <button type="button">Watched</button>
+        </li>
+        <li>
+          <button type="button">Queue</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
