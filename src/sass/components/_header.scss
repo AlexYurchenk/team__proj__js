@@ -1,5 +1,5 @@
 .header {
-  width: 320px;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -10,11 +10,9 @@
 }
 
 .overlay {
-  max-width: 320px;
-  background-image: linear-gradient(
-      to right rgba(0, 0, 0, 0.56),
-      rgba(0, 0, 0, 0.56)
-    ),url('../img/Rectangle.jpg');
+  max-width: 100%;
+  background-image: linear-gradient(to right rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url('../img/Rectangle.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
