@@ -20,6 +20,9 @@ const refs = {
     wrapperEl: document.querySelector('.modal-movie-wrapper'),
     poster: document.querySelector('.card-poster-wrapper'),
     information: document.querySelector('.modal-movie-information'),
+formRef: document.querySelector('#search-form'),
+    spanRef: document.querySelector('.notification'),
+
 
     btnAddWatched: document.querySelector('[data-name="watched"]'),
     btnAddQueue: document.querySelector('[data-name="queue"]'),
