@@ -19,8 +19,9 @@ const refs = {
     btnListPage: document.querySelector('.button-list__page'),
     wrapperEl: document.querySelector('.modal-movie-wrapper'),
     poster: document.querySelector('.card-poster-wrapper'),
-    information: document.querySelector('.modal-movie-information')
-
+    information: document.querySelector('.modal-movie-information'),
+formRef: document.querySelector('#search-form'),
+    spanRef: document.querySelector('.notification'),
 }
 
 export default refs;
