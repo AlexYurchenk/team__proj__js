@@ -103,9 +103,9 @@ li.button-list__item {
     margin: 8px;   
 }
 
-// .button-list__item:last-child{
-//     margin-right: 0%;
-// }
+.button-list__item:last-child{
+    margin-right: 8px;
+}
 
 .button-list__item--curretn {
     height: 40px;

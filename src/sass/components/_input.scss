@@ -81,3 +81,13 @@
     text-align: center;
   }
 }
+.js-notification {
+  color: #ff001b;
+  position: absolute;
+
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}

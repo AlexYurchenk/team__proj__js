@@ -1,24 +1,25 @@
+import refs from './main.js';
 import './apiService';
-import NewApiService from './apiService';
+import NewsApiService from './apiService';
+import trendMovieTpl from '../templates/trendfilm-cards.hbs';
 const debounce = require('lodash.debounce');
-const newsApiService = new NewApiService();
-const refs = {
-    formRef: document.querySelector('#search-form'),
-    spanRef: document.querySelector('.notification'),
-    gallery: document.querySelector('.js-trend-list'),
-}
-refs.formRef.addEventListener('input', debounce(onSearch, 500));
 
+const newsApiService = new NewsApiService();
+
+refs.formRef.addEventListener('input', debounce(onSearch, 500));
 
 async function onSearch (e) {
     e.preventDefault();
     try {        
      clearArticlesConteiner();     
     newsApiService.query = e.target.value.trim();    
-        if (newsApiService.query.trim() === '') {
+        if (newsApiService.query === '') {
             refs.spanRef.classList.add('js-notification');
-        toCreateGallery();              
+        addArticlesMarcup();              
         return 
+        }
+      if (newsApiService.query === '') {         
+        return alert('Вы ничего не ввели');
         }
         else {
         refs.spanRef.classList.remove('js-notification');
@@ -28,21 +29,21 @@ async function onSearch (e) {
     const fetch = await newsApiService.fetchFilm();
     if (fetch.total_results === 0) {
       refs.spanRef.classList.add('js-notification');
-      toCreateGallery();
+      addArticlesMarcup();
       return;
     } else {
       refs.spanRef.classList.remove('js-notification');
     }
-    const marcup = await addArticlesMarcup(fetch.results);
-    return marcup;
+    const marcup = addArticlesMarcup(fetch.results);
+    return marcup; 
   } catch (error) {
     console.log('error');
   }
 }
 function addArticlesMarcup(newFilms) {
-  return refs.gallery.insertAdjacentHTML('beforeend', filmTpl(newFilms));
+  return refs.trendContainer.insertAdjacentHTML('beforeend',trendMovieTpl(newFilms));
       }
       
 function clearArticlesConteiner() {
-  refs.gallery.innerHTML = '';
+  refs.trendContainer.innerHTML = '';
 }
