@@ -37,7 +37,8 @@
 
 
 /* Стили Катя Ю. */
-a {
+//a 
+.footer__link{
   text-decoration: none;
   background-image: linear-gradient(rgb(176, 251, 188), rgb(176, 251, 188)),
     linear-gradient(#feb2b2, #feb2b2);
@@ -47,7 +48,9 @@ a {
   transition: background-size 2s linear;
 }
 
-a:hover {
+// a:hover 
+.footer__link:hover
+{
   background-size: 0 2px, 100% 2px;
   cursor: pointer;
 }
