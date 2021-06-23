@@ -12,3 +12,4 @@ import './code.js/homeLogoBth.js';
 
 import './code.js/search.js';
 
+import './code.js/markUpMoviesCollection.js';

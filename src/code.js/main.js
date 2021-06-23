@@ -2,33 +2,68 @@ import SearchApiTrend from "./apiTrendService.js";
 
 import trendMovieTpl from '../templates/trendfilm-cards.hbs';
 import articleTpl from '../templates/modal-card.hbs';
+import addMoviesToCollection from './addMoviesToCollection.js';
+import markUpMoviesCollection from './markUpMoviesCollection.js';
+
 
 const refs = {
     trendContainer: document.querySelector('.js-trend-list'),
 
-    button:document.querySelector('.btn-list'),
+    button: document.querySelector('.btn-list'),
 
     modal: document.querySelector('.modal'),
     lightbox: document.querySelector('.modal-movie-lightbox'),
     closeModalBtn: document.querySelector('[data-action="close-lightbox"]'),
-    overlay:document.querySelector('.modal-movie-lightbox'),
+    overlay: document.querySelector('.modal-movie-lightbox'),
     overlayModal: document.querySelector('.js-modal-movie-overlay'),
-    next:document.querySelector('.js-btn-next'),
+    next: document.querySelector('.js-btn-next'),
     pr: document.querySelector('.js-btn-pr'),
-    btnList : document.querySelector('.button-list__container'),
+    btnList: document.querySelector('.button-list__container'),
     btnListPage: document.querySelector('.button-list__page'),
     wrapperEl: document.querySelector('.modal-movie-wrapper'),
     poster: document.querySelector('.card-poster-wrapper'),
     information: document.querySelector('.modal-movie-information'),
-formRef: document.querySelector('#search-form'),
+    formRef: document.querySelector('#search-form'),
     spanRef: document.querySelector('.notification'),
 
-
-    btnAddWatched: document.querySelector('[data-name="watched"]'),
-    btnAddQueue: document.querySelector('[data-name="queue"]'),
+    loader: document.querySelector('.loader'),
 }
 
 export default refs;
+
+
+const addWatched = new addMoviesToCollection({
+    selector: '[data-name="watched"]',
+});
+
+const addQueue = new addMoviesToCollection({
+    selector: '[data-name="queue"]',
+});
+
+const showWatched = new markUpMoviesCollection({
+    selector: '.btn-watched',
+});
+
+const showQueue = new markUpMoviesCollection({
+    selector: '.btn-queue',
+});
+
+showWatched.refs.firstButton.addEventListener('click', e => {
+    document.querySelectorAll('.list__item').forEach(li => li.remove())
+    const watchedCollection = JSON.parse(localStorage.getItem('watched'))
+    showWatched.fetchPersonsCollectionMovies(watchedCollection)
+    showWatched.refs.firstButton.disabled = true
+    showQueue.refs.secondButton.disabled = false
+});
+
+showQueue.refs.secondButton.addEventListener('click', e => {
+    document.querySelectorAll('.list__item').forEach(li => li.remove())
+    const queueCollection = JSON.parse(localStorage.getItem('queue'))
+    showQueue.fetchPersonsCollectionMovies(queueCollection)
+    showQueue.refs.secondButton.disabled = true
+    showWatched.refs.firstButton.disabled = false
+});
+
 
 SearchApiTrend.fetchtrend().then(results => {
     renderMovies(results)
@@ -38,31 +73,31 @@ SearchApiTrend.fetchtrend().then(results => {
 function renderMovies(results) {
     // console.log(results);
     fetchGenres()
-    .then( genres => {
+        .then(genres => {
 
-        results.forEach(result => {
-            result.genre_ids = result.genre_ids.map( genre => genres[genre])
-            result.release_date = result.release_date.slice(0,4)
-        });
+            results.forEach(result => {
+                result.genre_ids = result.genre_ids.map(genre => genres[genre])
+                result.release_date = result.release_date.slice(0, 4)
+            });
 
 
-        const markUp = trendMovieTpl(results);
-        refs.trendContainer.insertAdjacentHTML('beforeend',markUp);
-        refs.button.classList.add('none');
-    })
+            const markUp = trendMovieTpl(results);
+            refs.trendContainer.insertAdjacentHTML('beforeend', markUp);
+            refs.button.classList.add('none');
+        })
 
 }
 
 function fetchGenres() {
-   return fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=61153224aaaa08b03f5d3b14add082d2&language=en-US%27')
-    .then(r => r.json())
-    .then(({ genres }) => {
-        let temp = {};
-        for(let genre of genres){
-            temp[genre.id] = genre.name;
-        };
-        return temp;
-    })
+    return fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=61153224aaaa08b03f5d3b14add082d2&language=en-US%27')
+        .then(r => r.json())
+        .then(({ genres }) => {
+            let temp = {};
+            for (let genre of genres) {
+                temp[genre.id] = genre.name;
+            };
+            return temp;
+        })
 }
 refs.trendContainer.addEventListener('click', onModalFilmCard)
 
@@ -76,29 +111,12 @@ function onModalFilmCard(e) {
         .then(film => {
             console.log(film)
 
-            refs.btnAddWatched.addEventListener('click', e => {
-                const watched = JSON.parse(localStorage.getItem('watched')) || [];
-                localStorage.setItem('watched', JSON.stringify(watched))
-                
-                if (localStorage.getItem('watched').includes(JSON.stringify(film.id))) {
-                    return
-                }
-                watched.push(film.id)
-                console.log(watched)
-                localStorage.setItem('watched', JSON.stringify(watched))
-
+            addWatched.refs.button.addEventListener('click', e => {
+                addWatched.addMovies('watched', film.id)
             })
 
-            refs.btnAddQueue.addEventListener('click', e => {
-                const queue = JSON.parse(localStorage.getItem('queue')) || [];
-                localStorage.setItem('queue', JSON.stringify(queue))
-
-                if(localStorage.getItem('queue').includes(JSON.stringify(film.id))) {
-                    return
-                }
-                queue.push(film.id);
-                console.log(queue)
-                localStorage.setItem('queue', JSON.stringify(queue))
+            addQueue.refs.button.addEventListener('click', e => {
+                addQueue.addMovies('queue', film.id)
             })
 
             return film
@@ -108,7 +126,7 @@ function onModalFilmCard(e) {
 
             refs.lightbox.classList.toggle('modal-is-open')
             refs.overlayModal.insertAdjacentHTML('beforeend', markUp)
-        
+
         })
 }
 
@@ -122,82 +140,82 @@ function fetchMovie() {
         })
 }
 
-refs.closeModalBtn.addEventListener('click',onBtnClose)
-function onBtnClose(){
+refs.closeModalBtn.addEventListener('click', onBtnClose)
+function onBtnClose() {
 
 
-refs.trendContainer.addEventListener('click',e => {
-    if(e.target.nodeName !=='IMG'){
-        return
-      }
+    refs.trendContainer.addEventListener('click', e => {
+        if (e.target.nodeName !== 'IMG') {
+            return
+        }
 
-    openCloseModal();
-      
-    const a = e.target.id
-    return fetch(`https://api.themoviedb.org/3/movie/${a}?api_key=44d74a10460e9a32f8546bed31d47780&language=en-US`)
-    .then(r => r.json())
-    .then( film => {
-        console.log(film)
-        console.log(film.id)
-        return film
+        openCloseModal();
+
+        const a = e.target.id
+        return fetch(`https://api.themoviedb.org/3/movie/${a}?api_key=44d74a10460e9a32f8546bed31d47780&language=en-US`)
+            .then(r => r.json())
+            .then(film => {
+                console.log(film)
+                console.log(film.id)
+                return film
+            })
+            .then(film => {
+                const markUp = articleTpl(film);
+
+                // refs.lightbox.classList.toggle('modal-is-open')
+                refs.overlayModal.insertAdjacentHTML('afterbegin', markUp)
+            })
     })
-    .then(film => {
-        const markUp = articleTpl(film);
-
-        // refs.lightbox.classList.toggle('modal-is-open')
-        refs.overlayModal.insertAdjacentHTML('afterbegin',markUp)  
-    })
-})
 
 
-// refs.closeModalBtn.addEventListener('click',onBtnClose)
+    // refs.closeModalBtn.addEventListener('click',onBtnClose)
 
-// function onBtnClose(){
-//     // refs.lightbox.classList.remove('modal-is-open')
-//     refs.overlayModal.removeChild(refs.overlayModal.firstChild)
-//   }
-
-
-//   /////////////////////////
+    // function onBtnClose(){
+    //     // refs.lightbox.classList.remove('modal-is-open')
+    //     refs.overlayModal.removeChild(refs.overlayModal.firstChild)
+    //   }
 
 
-function pressEsc(e) {
-    if (
-      refs.lightbox.classList.contains('modal-is-open') &&
-      e.code === 'Escape'
-    ) {
-      openCloseModal();
+    //   /////////////////////////
+
+
+    function pressEsc(e) {
+        if (
+            refs.lightbox.classList.contains('modal-is-open') &&
+            e.code === 'Escape'
+        ) {
+            openCloseModal();
+        }
     }
-  }
 
 
     function openCloseModal() {
         refs.overlayModal.innerHTML = '';
 
-    refs.lightbox.classList.toggle('modal-is-open');
-  
-    if (refs.lightbox.classList.contains('modal-is-open')) {
-      window.addEventListener('keydown', pressEsc);
-      refs.closeModalBtn.addEventListener('click', openCloseModal);
-      refs.overlayModal.addEventListener('click', onOverlayClick);
-    } else {
-      window.removeEventListener('keydown', pressEsc);
-      refs.closeModalBtn.removeEventListener('click', openCloseModal);
-      refs.overlayModal.removeEventListener('click', onOverlayClick);
+        refs.lightbox.classList.toggle('modal-is-open');
+
+        if (refs.lightbox.classList.contains('modal-is-open')) {
+            window.addEventListener('keydown', pressEsc);
+            refs.closeModalBtn.addEventListener('click', openCloseModal);
+            refs.overlayModal.addEventListener('click', onOverlayClick);
+        } else {
+            window.removeEventListener('keydown', pressEsc);
+            refs.closeModalBtn.removeEventListener('click', openCloseModal);
+            refs.overlayModal.removeEventListener('click', onOverlayClick);
+        }
     }
-  }
 
     function onOverlayClick(e) {
-    if (e.target.closest('.modal-movie-wrapper')) {
-      return;
-    }
+        if (e.target.closest('.modal-movie-wrapper')) {
+            return;
+        }
         openCloseModal();
-}
-refs.overlay.addEventListener('click', evt => {
-   if(evt.currentTarget === evt.target){
-    openCloseModal();
-   }
-})
+    }
+    refs.overlay.addEventListener('click', evt => {
+        if (evt.currentTarget === evt.target) {
+            openCloseModal();
+        }
+    })
 }
 
 
@@ -234,13 +252,13 @@ refs.overlay.addEventListener('click', evt => {
 // })
 // refs.btnList.addEventListener('click', e => {
 
-    
+
 //     if(e.target.nodeName!== 'BUTTON'){
 //         return
 //     }
-    
+
 //     console.log(e.target.nodeName,e.currentTarget)
-    
+
 //     n = e.target.textContent -0;
 //     btnCreate()
 //     feachMuvie()
