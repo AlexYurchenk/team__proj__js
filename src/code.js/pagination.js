@@ -1,11 +1,15 @@
 import refs from './main.js';
 import trendMovieTpl from '../templates/trendfilm-cards.hbs';
+
+
 import sizesPagination from './sizes.js';
 
+ 
 
 const API__KEY = '44d74a10460e9a32f8546bed31d47780';
 const BASE__URL = 'https://api.themoviedb.org/3/discover/';
 let n = 1;
+
 let pageSize = document.documentElement.clientWidth;
 
 export default class PaginationService {
